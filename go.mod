@@ -1,4 +1,4 @@
-module gotool
+module github.com/lengnuan-v/gotool
 
 go 1.15
 
