@@ -12,7 +12,7 @@ import (
 	"reflect"
 )
 
-func Method(f interface{}, params ...interface{}) interface{} {
+func Handler(f interface{}, params ...interface{}) interface{} {
 	in := make([]reflect.Value, len(params))
 	for i, item := range params {
 		in[i] = reflect.ValueOf(item)
