@@ -12,10 +12,10 @@ import (
 	"reflect"
 )
 
-func Handler(f interface{}, params ...interface{}) interface{} {
+func Handler(f interface{}, params ...interface{}) []reflect.Value {
 	in := make([]reflect.Value, len(params))
 	for i, item := range params {
 		in[i] = reflect.ValueOf(item)
 	}
-	return reflect.ValueOf(f).Call(in)[0].Interface()
+	return reflect.ValueOf(f).Call(in)
 }
