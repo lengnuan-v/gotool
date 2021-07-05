@@ -38,9 +38,9 @@ func (c *ClientOptions) HttpRequest() ([]byte, []byte, error) {
 	}
 	var client *http.Client
 	// 代理 Client
-	if IsEmpty(c.Proxy) == false { client = c.proxyClient()}
+	if c.Proxy != nil && IsEmpty(c.Proxy) == false { client = c.proxyClient()}
 	// Header
-	if IsEmpty(c.Header) == false { for k, v := range c.Header { request.Header.Set(k, v) }}
+	if c.Header != nil && IsEmpty(c.Header) == false { for k, v := range c.Header { request.Header.Set(k, v) }}
 	var response *http.Response
 	if response, err = client.Do(request); err != nil {
 		return nil, nil, err
