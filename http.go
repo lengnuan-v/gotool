@@ -36,6 +36,7 @@ func (c *ClientOptions) HttpRequest() ([]byte, []byte, error) {
 	if request, err = http.NewRequest(c.Method, c.Url, c.Body); err != nil {
 		return nil, nil, err
 	}
+	request.Close = true
 	var client *http.Client
 	// 代理 Client
 	if IsEmpty(c.Proxy) == false { client = c.proxyClient()} else { client = &http.Client{} }
@@ -45,7 +46,7 @@ func (c *ClientOptions) HttpRequest() ([]byte, []byte, error) {
 	if response, err = client.Do(request); err != nil {
 		return nil, nil, err
 	}
-// 	defer response.Body.Close()
+	defer response.Body.Close()
 	var body []byte
 	body, err = ioutil.ReadAll(response.Body)
 	return body, CookiesString(response.Cookies()), nil
