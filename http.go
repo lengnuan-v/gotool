@@ -45,7 +45,7 @@ func (c *ClientOptions) HttpRequest() ([]byte, []byte, error) {
 	if response, err = client.Do(request); err != nil {
 		return nil, nil, err
 	}
-	defer response.Body.Close()
+// 	defer response.Body.Close()
 	var body []byte
 	body, err = ioutil.ReadAll(response.Body)
 	return body, CookiesString(response.Cookies()), nil
