@@ -99,7 +99,7 @@ func UA(source ...string) string {
 	case "IPad":
 		return surferua.New().Phone().String()
 	case "Computer":
-		returnsurferua.New().Desktop().String()
+		return surferua.New().Desktop().String()
 	default:
 		return surferua.NewBot()
 	}
