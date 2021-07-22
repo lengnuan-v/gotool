@@ -10,7 +10,7 @@ package gotool
 
 import (
 	"crypto/tls"
-	browser "github.com/EDDYCJY/fake-useragent"
+	"go.zoe.im/surferua"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -85,28 +85,22 @@ func UA(source ...string) string {
 	var name = If(IsEmpty(source) == true, []string{"default"}, source)
 	switch name.([]string)[0] {
 	case "Chrome":
-		return browser.Chrome()
-	case "InternetExplorer":
-		return browser.InternetExplorer()
-	case "Firefox":
-		return browser.Firefox()
-	case "Safari":
-		return browser.Safari()
+		return surferua.NewBotGoogle()
 	case "Android":
-		return browser.Android()
+		return surferua.New().Android().String()
 	case "MacOSX":
-		return browser.MacOSX()
+		return surferua.New().MacOS().String()
 	case "IOS":
-		return browser.IOS()
+		return surferua.New().IOS().String()
 	case "Linux":
-		return browser.Linux()
+		return surferua.New().Linux().String()
 	case "IPhone":
-		return browser.IPhone()
+		return surferua.New().IOS().String()
 	case "IPad":
-		return browser.IPad()
+		return surferua.New().Phone().String()
 	case "Computer":
-		return browser.Computer()
+		returnsurferua.New().Desktop().String()
 	default:
-		return browser.Random()
+		return surferua.NewBot()
 	}
 }
